@@ -16,10 +16,6 @@ app = Flask(__name__)
 def webhook():
     req = request.get_json(silent=True, force=True)
 
-    # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    # response = urllib.urlopen(url)
-    # data = json.loads(response.read())
-
     res = processRequest(req)
 
     res = json.dumps(res, indent=4)
@@ -41,11 +37,14 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     language = parameters.get("programming")
 
+    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    response = urllib.urlopen(url)
+    data = json.loads(response.read())
+
     if (language == "python"):
         speech = "You snake!"
     else:
-        speech = language
-        #speech = "How about no " + language + " " + data.get('productNumber')
+        speech = "How about no " + language + " " + data.get('productNumber')
 
     return {
         "speech": speech,
