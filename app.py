@@ -16,8 +16,8 @@ app = Flask(__name__)
 def webhook():
     req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+    # print("Request:")
+    # print(json.dumps(req, indent=4))
 
     res = processRequest(req)
 
@@ -53,35 +53,34 @@ def makeYqlQuery(req):
 
 
 def makeWebhookResult(data):
-    query = data.get('query')
-    if query is None:
-        return {}
+    # query = data.get('query')
+    # if query is None:
+    #     return {}
 
-    result = query.get('results')
-    if result is None:
-        return {}
+    # result = query.get('results')
+    # if result is None:
+    #     return {}
 
-    channel = result.get('channel')
-    if channel is None:
-        return {}
+    # channel = result.get('channel')
+    # if channel is None:
+    #     return {}
 
-    item = channel.get('item')
-    location = channel.get('location')
-    units = channel.get('units')
-    if (location is None) or (item is None) or (units is None):
-        return {}
+    # item = channel.get('item')
+    # location = channel.get('location')
+    # units = channel.get('units')
+    # if (location is None) or (item is None) or (units is None):
+    #     return {}
 
-    condition = item.get('condition')
-    if condition is None:
-        return {}
+    # condition = item.get('condition')
+    # if condition is None:
+    #     return {}
 
     # print(json.dumps(item, indent=4))
 
-    speech = "Yahoo Says: " + location.get('city') + ": " + condition.get('text') + \
-             ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
+    # speech = "Yahoo Says: " + location.get('city') + ": " + condition.get('text') + \
+    #          ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
-    print("Response:")
-    print(speech)
+    speech = "How about no"
 
     return {
         "speech": speech,
@@ -95,6 +94,6 @@ def makeWebhookResult(data):
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
-    print("Starting app on port %d" % port)
+    # print("Starting app on port %d" % port)
 
     app.run(debug=False, port=port, host='0.0.0.0')
