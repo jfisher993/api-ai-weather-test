@@ -17,8 +17,8 @@ def webhook():
     req = request.get_json(silent=True, force=True)
 
     url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    response = urllib.urlopen(url).read()
-    data = json.loads(response)
+    response = urllib.urlopen(url)
+    data = json.loads(response.read())
 
     res = processRequest(req, data)
 
