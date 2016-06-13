@@ -20,7 +20,7 @@ def webhook():
     # response = urllib.urlopen(url)
     # data = json.loads(response.read())
 
-    res = processRequest(req, data)
+    res = processRequest(req)
 
     res = json.dumps(res, indent=4)
 
@@ -29,14 +29,14 @@ def webhook():
     return r
 
 
-def processRequest(req, data):
+def processRequest(req):
     if req.get("result").get("action") != "apiaitest":
         return {}
 
-    res = makeWebhookResult(req, data)
+    res = makeWebhookResult(req)
     return res
 
-def makeWebhookResult(req, data):
+def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     language = parameters.get("programming")
