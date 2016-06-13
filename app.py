@@ -36,7 +36,7 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     language = parameters.get("programming")
-    if (languge == "python"):
+    if (language == "python"):
         speech = "You snake!"
     else:
         speech = "How about no " + language
