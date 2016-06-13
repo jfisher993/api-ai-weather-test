@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import urllib.request
+import urllib
 import json
 import os
 
@@ -36,11 +36,10 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     language = parameters.get("programming")
-
     if (language == "python"):
         speech = "You snake!"
     else:
-        speech = "How about no " + language #+ " " + data.get('productNumber')
+        speech = "How about no " + language
 
     return {
         "speech": speech,
