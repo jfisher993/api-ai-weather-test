@@ -4,17 +4,16 @@ import urllib.request
 import json
 import os
 
+url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+response = urllib.request.urlopen(url).read()
+data = json.loads(response.decode('utf-8'))
+
 from flask import Flask
 from flask import request
 from flask import make_response
 
 # Flask app should start in global layout
 app = Flask(__name__)
-
-
-url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-response = urllib.request.urlopen(url).read()
-data = json.loads(response.decode('utf-8'))
 
 
 @app.route('/webhook', methods=['POST'])
