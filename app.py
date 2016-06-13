@@ -44,7 +44,8 @@ def makeWebhookResult(req, data):
     if (language == "python"):
         speech = "You snake!"
     else:
-        speech = "How about no " + language + " " + data.get('productNumber')
+        speech = language
+        #speech = "How about no " + language + " " + data.get('productNumber')
 
     return {
         "speech": speech,
