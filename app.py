@@ -4,10 +4,6 @@ import urllib.request
 import json
 import os
 
-url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-response = urllib.request.urlopen(url).read()
-data = json.loads(response.decode('utf-8'))
-
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -44,7 +40,7 @@ def makeWebhookResult(req):
     if (language == "python"):
         speech = "You snake!"
     else:
-        speech = "How about no " + language + " " + data.get('productNumber')
+        speech = "How about no " + language #+ " " + data.get('productNumber')
 
     return {
         "speech": speech,
