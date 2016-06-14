@@ -40,7 +40,7 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     countryCode = parameters.get("countryCode")
-    productNumer = parameters.get("productNumer")
+    productNumber = parameters.get("productNumer")
 
     url = 'https://api.qvc.com/api/sales/presentation/v3/' + countryCode + '/products/' + productNumber + '?response-depth=full'
     data = get_jsonparsed_data(url)
