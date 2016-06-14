@@ -63,8 +63,8 @@ def makeWebhookResult(req):
     }
 
 def get_jsonparsed_data(url):
-    response = urlopen(url)
-    data = response.read()
+    #response = urlopen(url)
+    #data = response.read()
     return "lobster"
 
 
