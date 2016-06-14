@@ -25,7 +25,7 @@ def webhook():
     return r
 
 def processRequest(req):
-    if req.get("result").get("action") != "apiaitest":
+    if req.get("result").get("action") != "searchQVC":
         return {}
 
     res = makeWebhookResult(req)
@@ -39,15 +39,13 @@ def get_jsonparsed_data(url):
 def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
-    language = parameters.get("programming")
+    countryCode = parameters.get("countryCode")
+    productNumer = parameters.get("productNumer")
 
-    url = 'https://api.qvc.com/api/sales/presentation/v3/us/products/A281864?response-depth=full'
+    url = 'https://api.qvc.com/api/sales/presentation/v3/' + countryCode + '/products/' + productNumber + '?response-depth=full'
     data = get_jsonparsed_data(url)
 
-    if (language == "python"):
-        speech = "You snake!"
-    else:
-        speech = "How about no " + language + " " + data.get('productNumber')
+    speech = data.get('productNumber') + "\n" + "Brand Name: " + data.get('brandName') + "\n" + data.get('shortDescription')
 
     return {
         "speech": speech,
