@@ -31,8 +31,7 @@ def webhook():
     return r
 
 def get_jsonparsed_data(url):
-    request = urllib2.request(url)
-    response = urllib2.urlopen(request)
+    response = urlopen(url)
     data = response.read()
     return json.loads(data.decode('utf-8'))
 
