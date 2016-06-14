@@ -3,13 +3,6 @@ import urllib.request
 import json
 import os
 
-def get_jsonparsed_data(url):
-    response = urllib.request.urlopen(url)
-    data = response.read()
-    return json.loads(data.decode('utf-8'))
-
-url = 'http://api.qvc.com/api/sales/presentation/v3/us/products/A281864?response-depth=full'
-data = get_jsonparsed_data(url)
 #print(json.dumps(data, indent=4))
 
 from flask import Flask
@@ -38,10 +31,18 @@ def processRequest(req):
     res = makeWebhookResult(req)
     return res
 
+def get_jsonparsed_data(url):
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    return json.loads(data.decode('utf-8'))
+
 def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     language = parameters.get("programming")
+
+    url = 'https://api.qvc.com/api/sales/presentation/v3/us/products/A281864?response-depth=full'
+    data = get_jsonparsed_data(url)
 
     if (language == "python"):
         speech = "You snake!"
