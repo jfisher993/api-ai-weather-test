@@ -30,9 +30,9 @@ def webhook():
     return r
 
 def get_jsonparsed_data(url):
-    response = urlopen(url)
-    data = response.read()
-    return json.loads(data.decode('utf-8'))
+    #response = urlopen(url)
+    #data = response.read()
+    return "lobster"#json.loads(data.decode('utf-8'))
 
 def processRequest(req):
     if req.get("result").get("action") != "apiaitest":
