@@ -46,13 +46,13 @@ def makeWebhookResult(req):
     # response = urllib.request.urlopen(url).read()
     # data = json.loads(response.decode('utf-8'))
 
-    # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    # data = get_jsonparsed_data(url)
+    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    data = get_jsonparsed_data(url)
 
     if (language == "python"):
         speech = "You snake!"
     else:
-        speech = "How about no " + language# + " " + data.get('productNumber')
+        speech = "How about no " + language + " " + data# + " " + data.get('productNumber')
 
     return {
         "speech": speech,
@@ -65,7 +65,7 @@ def makeWebhookResult(req):
 def get_jsonparsed_data(url):
     response = urlopen(url)
     data = response.read()
-    return json.loads(data)
+    return "lobster"
 
 
 if __name__ == '__main__':
