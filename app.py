@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
-import urllib
+try:
+    # For Python 3.0 and later
+    from urllib.request import urlopen
+except ImportError:
+    # Fall back to Python 2's urllib2
+    from urllib2 import urlopen
 import json
 import os
 
@@ -42,9 +47,8 @@ def makeWebhookResult(req):
     # data = json.loads(response.decode('utf-8'))
 
     url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
-
+    data = get_jsonparsed_data(url)
+    
     if (language == "python"):
         speech = "You snake!"
     else:
@@ -57,6 +61,11 @@ def makeWebhookResult(req):
         # "data": {"facebook": speech},
         "source": "apiai-weather-webhook-test"
     }
+
+def get_jsonparsed_data(url):
+    response = urlopen(url)
+    data = response.read()
+    return json.loads(data.decode('utf-8'))
 
 
 if __name__ == '__main__':
