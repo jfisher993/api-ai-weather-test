@@ -51,7 +51,7 @@ def makeWebhookResult(req):
 
     #url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
     response = urllib2.urlopen('http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items').read()
-    data = json.loads(response)
+    data = json.load(response)
 
     # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
     # data = get_jsonparsed_data(url)
