@@ -1,12 +1,5 @@
 #!/usr/bin/env python
-
-try:
-    # For Python 3.0 and later
-    from urllib.request import urlopen
-except ImportError:
-    # Fall back to Python 2's urllib2
-    from urllib2 import urlopen
-
+import urllib.request
 import json
 import os
 
@@ -31,7 +24,7 @@ def webhook():
     return r
 
 def get_jsonparsed_data(url):
-    response = urlopen(url)
+    response = urllib.request.urlopen(url)
     data = response.read()
     return json.loads(data.decode('utf-8'))
 
@@ -47,7 +40,7 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     language = parameters.get("programming")
 
-    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    url = 'http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items'
     data = get_jsonparsed_data(url)
 
     if (language == "python"):
