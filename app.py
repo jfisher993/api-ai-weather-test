@@ -32,7 +32,7 @@ def webhook():
 def get_jsonparsed_data(url):
     response = urlopen(url)
     data = response.read()
-    return json.loads(data)
+    return json.loads(data.decode('utf-8'))
 
 def processRequest(req):
     if req.get("result").get("action") != "apiaitest":
