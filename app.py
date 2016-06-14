@@ -29,6 +29,10 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
+def get_jsonparsed_data(url):
+    response = urlopen(url)
+    data = response.read()
+    return json.loads(data)
 
 def processRequest(req):
     if req.get("result").get("action") != "apiaitest":
@@ -52,7 +56,7 @@ def makeWebhookResult(req):
     if (language == "python"):
         speech = "You snake!"
     else:
-        speech = "How about no " + language + " " + data# + " " + data.get('productNumber')
+        speech = "How about no " + language + " " + data.get('productNumber')
 
     return {
         "speech": speech,
@@ -61,12 +65,6 @@ def makeWebhookResult(req):
         # "data": {"facebook": speech},
         "source": "apiai-weather-webhook-test"
     }
-
-def get_jsonparsed_data(url):
-    #response = urlopen(url)
-    #data = response.read()
-    return "lobster"
-
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
