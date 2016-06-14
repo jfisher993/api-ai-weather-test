@@ -9,7 +9,7 @@ def get_jsonparsed_data(url):
     return json.loads(data.decode('utf-8'))
 
 #url = 'http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items'
-#data = get_jsonparsed_data(url)
+data = 'lobster'#get_jsonparsed_data(url)
 #print(json.dumps(data, indent=4))
 
 from flask import Flask
