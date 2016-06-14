@@ -3,13 +3,21 @@ import urllib.request
 import json
 import os
 
+def get_jsonparsed_data(url):
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    return json.loads(data.decode('utf-8'))
+
+url = 'http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items'
+data = get_jsonparsed_data(url)
+#print(json.dumps(data, indent=4))
+
 from flask import Flask
 from flask import request
 from flask import make_response
 
 # Flask app should start in global layout
 app = Flask(__name__)
-
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -35,9 +43,6 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     language = parameters.get("programming")
 
-    url = 'http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items'
-    data = get_jsonparsed_data(url)
-
     if (language == "python"):
         speech = "You snake!"
     else:
@@ -50,11 +55,6 @@ def makeWebhookResult(req):
         # "data": {"facebook": speech},
         "source": "apiai-weather-webhook-test"
     }
-    
-def get_jsonparsed_data(url):
-    response = urllib.request.urlopen(url)
-    data = response.read()
-    return json.loads(data.decode('utf-8'))
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
