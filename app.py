@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# import urllib.request
+import urllib
 import json
 import os
 
@@ -40,6 +40,10 @@ def makeWebhookResult(req):
     # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
     # response = urllib.request.urlopen(url).read()
     # data = json.loads(response.decode('utf-8'))
+
+    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    response = urllib.urlopen(url)
+    data = json.loads(response.read())
 
     if (language == "python"):
         speech = "You snake!"
