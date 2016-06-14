@@ -7,7 +7,7 @@
 #     # Fall back to Python 2's urllib2
 #     from urllib2 import urlopen
 
-import urllib2
+import urllib
 import json
 import os
 
@@ -31,11 +31,11 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-def get_jsonparsed_data(url):
-    request = urllib2.Request(url)
-    response = urllib2.urlopen(request)
-    data = response.read()
-    return json.loads(data)
+# def get_jsonparsed_data(url):
+#     request = urllib2.request(url)
+#     response = urllib2.urlopen(request)
+#     data = response.read()
+#     return json.loads(data)
 
 def processRequest(req):
     if req.get("result").get("action") != "apiaitest":
@@ -49,12 +49,12 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     language = parameters.get("programming")
 
-    # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    # response = urllib.request.urlopen(url).read()
-    # data = json.loads(response.decode('utf-8'))
+    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    response = urllib.urlopen(url).read()
+    data = json.loads(response)
 
-    url = 'http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items'
-    data = get_jsonparsed_data(url)
+    # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    # data = get_jsonparsed_data(url)
 
     if (language == "python"):
         speech = "You snake!"
