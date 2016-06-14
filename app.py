@@ -30,7 +30,7 @@ def webhook():
     return r
 
 def get_jsonparsed_data(url):
-    response = urlopen(url)
+    #response = urlopen(url)
     #data = response.read()
     return "lobster"#json.loads(data.decode('utf-8'))
 
