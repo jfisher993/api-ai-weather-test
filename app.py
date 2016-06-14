@@ -7,7 +7,7 @@
 #     # Fall back to Python 2's urllib2
 #     from urllib2 import urlopen
 
-import urllib
+import urllib2
 import json
 import os
 
@@ -50,9 +50,8 @@ def makeWebhookResult(req):
     language = parameters.get("programming")
 
     url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    jsonUrl = url + "&format=json"
-    response = urllib.urlopen(jsonUrl).read()
-    data = json.loads(response)
+    response = urllib2.urlopen(url)
+    data = json.load(response)
 
     # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
     # data = get_jsonparsed_data(url)
