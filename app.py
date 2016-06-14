@@ -50,8 +50,8 @@ def makeWebhookResult(req):
     language = parameters.get("programming")
 
     #url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    response = urllib2.urlopen('http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items')
-    data = json.load(response)
+    response = urllib2.urlopen('http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items').read()
+    data = json.loads(response)
 
     # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
     # data = get_jsonparsed_data(url)
