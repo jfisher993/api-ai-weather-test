@@ -65,7 +65,7 @@ def makeWebhookResult(req):
 def get_jsonparsed_data(url):
     response = urlopen(url)
     data = response.read()
-    return json.loads(data.decode('utf-8'))
+    return json.loads(data)
 
 
 if __name__ == '__main__':
