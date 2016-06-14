@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import urllib
+import urllib.request
 import json
 import os
 
@@ -37,14 +37,15 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     language = parameters.get("programming")
 
-    # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    # response = urllib.request.urlopen(url).read()
-    # data = json.loads(response.decode('utf-8'))
+    #VERSION ISSUE 2.7 on Server but this is 3.0 (Can't use urllib.request)
+    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    response = urllib.request.urlopen(url).read()
+    data = json.loads(response.decode('utf-8'))
 
     if (language == "python"):
         speech = "You snake!"
     else:
-        speech = "How about no " + language #+ " " + data.get('productNumber')
+        speech = "How about no " + language + " " + data.get('productNumber')
 
     return {
         "speech": speech,
