@@ -32,7 +32,7 @@ def webhook():
     return r
 
 def get_jsonparsed_data(url):
-    request = urllib2.request(url)
+    request = urllib2.Request(url)
     response = urllib2.urlopen(request)
     data = response.read()
     return json.loads(data)
@@ -53,7 +53,7 @@ def makeWebhookResult(req):
     # response = urllib.request.urlopen(url).read()
     # data = json.loads(response.decode('utf-8'))
 
-    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    url = 'http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items'
     data = get_jsonparsed_data(url)
 
     if (language == "python"):
