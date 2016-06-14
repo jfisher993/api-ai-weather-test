@@ -34,7 +34,7 @@ def get_jsonparsed_data(url):
     request = urllib2.request(url)
     response = urllib2.urlopen(request)
     data = response.read()
-    return json.loads(data)
+    return json.loads(data.decode('utf-8'))
 
 def processRequest(req):
     if req.get("result").get("action") != "apiaitest":
