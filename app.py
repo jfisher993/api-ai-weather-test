@@ -46,9 +46,9 @@ def makeWebhookResult(req):
     # response = urllib.request.urlopen(url).read()
     # data = json.loads(response.decode('utf-8'))
 
-    url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
-    data = get_jsonparsed_data(url)
-    
+    # url = "http://admin-api.qvcdev.qvc.net/api/sales/presentation/v3/us/products/A274786?response-depth=items"
+    # data = get_jsonparsed_data(url)
+
     if (language == "python"):
         speech = "You snake!"
     else:
